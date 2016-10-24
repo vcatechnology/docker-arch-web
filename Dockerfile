@@ -9,4 +9,4 @@ RUN sudo pacman --noconfirm --needed -S \
 #  x11vnc \
   nodejs
 
-RUN sudo npm install -g gulp bower polymer-cli wct-vca-api vca-api-middleware
+RUN sudo npm install -g gulp bower polymer-cli
