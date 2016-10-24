@@ -7,6 +7,7 @@ RUN sudo pacman --noconfirm --needed -S \
   firefox \
   xorg-server-xvfb \
 #  x11vnc \
-  nodejs
+  nodejs \
+  openssh
 
 RUN sudo npm install -g gulp bower polymer-cli
