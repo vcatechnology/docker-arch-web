@@ -3,35 +3,23 @@ MAINTAINER VCA Technology <developers@vcatechnology.com>
 
 RUN sudo pacman --noconfirm --needed -S \
   npm \
-  chromium \
+  #chromium \
   firefox \
   xorg-server-xvfb \
   x11vnc \
   nodejs \
-  ### chrome dependencies
-  alsa-lib \
-  desktop-file-utils \
-  flac \
-  gconf \
-  gnome-themes-standard \
-  gtk2 \
-  harfbuzz \
-  harfbuzz-icu \
-  hicolor-icon-theme \
-  libpng \
-  libxss \
-  libxtst \
-  nss \
-  opus \
-  snappy \
-  speech-dispatcher \
-  ttf-font \
-  xdg-utils \
-  fakeroot \
-  patch \
+  jre8-openjdk \
+  wget \
   # yaourt
   openssh
 
-RUN git clone https://aur.archlinux.org/google-chrome.git && cd google-chrome && makepkg && sudo pacman -U google-chrome-5* --noconfirm --needed
+ENV LAUNCHPAD_CHROME /usr/bin/chromium
+
+ENV DISPLAY :99.0
+
+### downgrade chromium due to errors https://github.com/Polymer/web-component-tester/issues/366
+RUN wget https://archive.archlinux.org/packages/c/chromium/chromium-51.0.2704.84-1-x86_64.pkg.tar.xz && sudo pacman -U chromium-* --noconfirm --needed
 
 RUN sudo npm install -g gulp bower polymer-cli
+
+CMD Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
