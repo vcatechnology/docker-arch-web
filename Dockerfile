@@ -15,6 +15,8 @@ RUN sudo pacman --noconfirm --needed -S \
 
 ENV LAUNCHPAD_CHROME /usr/bin/chromium
 
+ENV CHROME_BIN /usr/bin/chromium
+
 ENV DISPLAY :99.0
 
 ### downgrade chromium due to errors https://github.com/Polymer/web-component-tester/issues/366
