@@ -23,5 +23,3 @@ ENV DISPLAY :99.0
 RUN wget https://archive.archlinux.org/packages/c/chromium/chromium-51.0.2704.84-1-x86_64.pkg.tar.xz && sudo pacman -U chromium-* --noconfirm --needed
 
 RUN sudo npm install -g gulp bower polymer-cli
-
-CMD Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
