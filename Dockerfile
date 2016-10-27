@@ -10,16 +10,22 @@ RUN sudo pacman --noconfirm --needed -S \
   nodejs \
   jre8-openjdk \
   wget \
-  # yaourt
   openssh
 
-ENV LAUNCHPAD_CHROME /usr/bin/chromium
+ENV LAUNCHPAD_CHROME /usr/local/bin/chromium-no-sandbox
 
-ENV CHROME_BIN /usr/bin/chromium
+ENV CHROME_BIN /usr/local/bin/chromium-no-sandbox
 
-ENV DISPLAY :99.0
+ENV CHROMIUM_BIN /usr/local/bin/chromium-no-sandbox
+
+RUN sudo su -c " \
+  echo '#! /bin/sh' > /usr/local/bin/chromium-no-sandbox && \
+  echo 'chromium $@ --no-sandbox' >> /usr/local/bin/chromium-no-sandbox && \
+  chmod +x /usr/local/bin/chromium-no-sandbox && \
+  exit"
 
 ### downgrade chromium due to errors https://github.com/Polymer/web-component-tester/issues/366
-RUN wget https://archive.archlinux.org/packages/c/chromium/chromium-51.0.2704.84-1-x86_64.pkg.tar.xz && sudo pacman -U chromium-* --noconfirm --needed
+RUN wget https://archive.archlinux.org/packages/c/chromium/chromium-53.0.2785.92-1-x86_64.pkg.tar.xz && \
+  sudo pacman -U chromium-* --noconfirm --needed
 
 RUN sudo npm install -g gulp bower polymer-cli
