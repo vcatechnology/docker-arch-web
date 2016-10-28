@@ -20,7 +20,7 @@ ENV CHROMIUM_BIN /usr/local/bin/chromium-no-sandbox
 
 RUN sudo su -c " \
   echo '#! /bin/sh' > /usr/local/bin/chromium-no-sandbox && \
-  echo 'chromium $@ --no-sandbox' >> /usr/local/bin/chromium-no-sandbox && \
+  echo 'chromium \$@ --no-sandbox' >> /usr/local/bin/chromium-no-sandbox && \
   chmod +x /usr/local/bin/chromium-no-sandbox && \
   exit"
 
