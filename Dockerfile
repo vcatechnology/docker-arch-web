@@ -10,6 +10,7 @@ RUN sudo pacman --noconfirm --needed -S \
   nodejs \
   jre8-openjdk \
   wget \
+  gcc \
   openssh
 
 ENV LAUNCHPAD_CHROME /usr/local/bin/chromium-no-sandbox
