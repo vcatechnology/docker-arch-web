@@ -21,6 +21,13 @@ ENV CHROME_BIN /usr/local/bin/chromium-no-sandbox
 
 ENV CHROMIUM_BIN /usr/local/bin/chromium-no-sandbox
 
+# Set up build local global node packages
+ENV NPM_GLOBAL_PACKAGES "${CI_PROJECT_DIR}/.npm-global-packages"
+
+ENV NODE_PATH "${NPM_GLOBAL_PACKAGES}/lib/node_modules:${NODE_PATH}"
+
+ENV PATH "${NPM_GLOBAL_PACKAGES}/bin:${PATH}"
+
 RUN sudo su -c " \
   echo '#! /bin/sh' > /usr/local/bin/chromium-no-sandbox && \
   echo 'chromium \$@ --no-sandbox' >> /usr/local/bin/chromium-no-sandbox && \
