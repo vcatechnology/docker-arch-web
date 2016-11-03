@@ -21,13 +21,6 @@ ENV CHROME_BIN /usr/local/bin/chromium-no-sandbox
 
 ENV CHROMIUM_BIN /usr/local/bin/chromium-no-sandbox
 
-# Set up build local global node packages
-ENV NPM_GLOBAL_PACKAGES "${CI_PROJECT_DIR}/.npm-global-packages"
-
-ENV NODE_PATH "${NPM_GLOBAL_PACKAGES}/lib/node_modules:${NODE_PATH}"
-
-ENV PATH "${NPM_GLOBAL_PACKAGES}/bin:${PATH}"
-
 RUN sudo su -c " \
   echo '#! /bin/sh' > /usr/local/bin/chromium-no-sandbox && \
   echo 'chromium \$@ --no-sandbox' >> /usr/local/bin/chromium-no-sandbox && \
@@ -47,5 +40,3 @@ RUN wget  http://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.z
   sudo ln -fs /usr/local/share/chromedriver /usr/local/bin/chromedriver && \
   sudo ln -fs /usr/local/share/chromedriver /usr/bin/chromedriver && \
   rm -r /tmp/chromedriver
-
-RUN sudo npm install -g gulp bower polymer-cli
