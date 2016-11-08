@@ -27,11 +27,6 @@ RUN sudo su -c " \
   chmod +x /usr/local/bin/chromium-no-sandbox && \
   exit"
 
-### downgrade chromium due to errors https://github.com/Polymer/web-component-tester/issues/366
-RUN wget https://archive.archlinux.org/packages/c/chromium/chromium-53.0.2785.92-1-x86_64.pkg.tar.xz && \
-  sudo pacman -U chromium-* --noconfirm --needed && \
-  rm chromium-*
-
 ### upgrade chromedrive due to errors
 RUN wget  http://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip -P /tmp/chromedriver && \
   unzip /tmp/chromedriver/chromedriver_linux64.zip -d /tmp/chromedriver && \
