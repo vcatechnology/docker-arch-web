@@ -1,7 +1,7 @@
 FROM vcatechnology/arch-ci:latest
 MAINTAINER VCA Technology <developers@vcatechnology.com>
 
-RUN sudo vca-install-packages \
+RUN sudo vca-install-package \
   npm \
   chromium \
   firefox \
