@@ -28,7 +28,8 @@ RUN sudo vca-install-package \
   jre8-openjdk \
   gcc \
   gconf \
-  openssh
+  openssh \
+  yarn
 
 ENV LAUNCHPAD_CHROME /usr/local/bin/chromium-no-sandbox
 
@@ -37,7 +38,7 @@ ENV CHROME_BIN /usr/local/bin/chromium-no-sandbox
 ENV CHROMIUM_BIN /usr/local/bin/chromium-no-sandbox
 
 ### downgrade node version due to nodegit error with v0.7.0
-RUN sudo npm install -g n yarn && sudo n 6.9.0
+RUN sudo npm install -g n && sudo n 6.9.0
 
 RUN sudo su -c " \
   echo '#! /bin/sh' > /usr/local/bin/chromium-no-sandbox && \
